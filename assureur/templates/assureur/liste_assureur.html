@@ -1,0 +1,181 @@
+{% extends 'index.html' %}
+
+{% block contenu %}
+{% load static %}
+<div class="row justify-content-center">
+    <div class="col-12">
+        <!-- Afficher les alertes -->
+        {% for message in messages %}
+            {% if 'ajout_assureur' in message.tags %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+        </div>
+    {% elif 'suppression_assureur' in message.tags %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% elif 'modification_assureur' in message.tags %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+    {% endfor %}
+        <div class="card-body" style="margin-bottom: -10px;">
+            <div class="d-flex justify-content">
+                    <!-- Bouton pour créer un nouveau assureur -->
+                    <button type="button" class="btn btn-success" title="Ajouter un assureur"
+                            onclick="location.href='{% url 'ajouter_assureur' %}'">
+                        <i class="fas fa-plus-circle" aria-hidden="true"></i> Ajouter Assureur
+                    </button>
+                </div>
+        </div>
+        <div class="col-lg-12 col-md-12" style="margin-top: -28px;">
+            <div class="card" style="min-height: 485px; padding-top: 0px;">
+                <div class="card-header" >
+                    <i class="fa-solid fa-handshake-angle fa-2xl"></i>
+                </div>
+                <div class="card-content table-responsive">
+                    <table id="dataTableExample4" class="table table-bordered table-hover table-striped" style="font-size: 14px;">
+                            <thead class="text-primary" >
+                            <tr>
+                                <th class="sorting" style="color: black;">CODE</th>
+                                <th class="sorting" style="color: black;">LIBELLE</th>
+                                <th class="sorting" style="color: black;">ADRESSE</th>
+                                <th class="sorting" style="color: black;">TELEPHONE</th>
+                                <th class="sorting" style="color: black;">EMAIL</th>
+                                <th class="sorting" style="color: black;">TYPE</th>
+                                <th class="sorting" style="color: black;">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for assureur in liste_assureur %}
+                            <tr>
+                                <td>{{ assureur.code }}</td>
+                                <td>{{ assureur.libelle }}</td>
+                                <td>{{ assureur.adresse }}</td>
+                                <td>{{ assureur.telephone }}</td>
+                                <td>{{ assureur.email }}</td>
+                                <td>{{ assureur.type }}</td>
+                                <td>
+                                    <!-- Bouton pour afficher les détails dans une modal -->
+                                    <button type="button" class="btn btn-success  btn-sm me-1" data-bs-toggle="modal"
+                                    data-bs-target="#myModal{{ assureur.id }}" title="Détails">
+                                    <i class="fa-solid fa-circle-info fa-lg"></i>
+                                    </button>
+
+                                    <!-- Modal de détails -->
+                                    <div class="modal" id="myModal{{ assureur.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">
+                                                        {{ assureur.libelle }}
+                                                    </h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            {% if assureur.photo %}
+                                                                <img src="{{ assureur.photo.url }}" alt="Photo de l'assureur" class="img-fluid">
+                                                            {% else %}
+                                                                <img src="{% static 'img/default_image_assureur.jpg' %}" alt="Photo par défaut" class="img-fluid">
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6><u>INFORMATIONS SUR L'ASSUREUR:</u></h6>
+                                                            <ul class="list-unstyled">
+                                                                <li><strong>CODE:</strong> {{ assureur.code }}</li>
+                                                                <li><strong>LIBELLE:</strong> {{ assureur.libelle }}</li>
+                                                                <li><strong>TYPE:</strong> {{ assureur.type }}</li>
+                                                                <li><strong>ADRESSE:</strong> {{ assureur.adresse }}</li>
+                                                                <li><strong>TELEPHONE:</strong> {{ assureur.telephone }}</li>
+                                                                <li><strong>SITE WEB:</strong> {{ assureur.site_web }}</li>
+                                                                <li><strong>EMAIL:</strong> {{ assureur.email }}</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Bouton pour la modification -->
+                                    <button type="button" class="btn btn-warning btn-sm me-1" onclick="window.location.href='{% url 'modification_assureur' assureur.id %}'"
+                                        title="Modifier">
+                                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                    </button>
+
+                                    <!-- Bouton pour la suppression -->
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#delete{{ assureur.id }}" title="Supprimer">
+                                        <i class="fa-solid fa-trash-can fa-lg"></i>
+                                    </button>
+                                    <div class="modal" id="delete{{ assureur.id }}" tabindex="-1"
+                                         aria-labelledby="myModalLabel2" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true"></span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Voulez-vous vraiment supprimer l'assureur {{ assureur.libelle }} ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form action="{% url 'supprimer_assureur' assureur.id %}"
+                                                          method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                                                    </form>
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Annuler</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                 </div>
+            </div>
+        </div>
+
+        <div class="card-body" style="margin-top: -20px;">
+            <div style="text-align:center;" id="mon_ancre_assureur">
+                <form method="get" id="filter-form">
+                    {% csrf_token %}
+                    {{my_filter.form}}
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% for assureur in liste_assureur %}
+<div class="modal" id="myModal{{ assureur.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+</div>
+{% endfor %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterForm = document.getElementById("filter-form");
+        const filterInputs = document.querySelectorAll('input[type="text"], select'); // Sélectionnez tous les champs de texte et les listes déroulantes
+
+        filterInputs.forEach(function (input) {
+            input.addEventListener("input", function () {
+                filterForm.submit();
+            });
+        });
+    });
+</script>
+
+
+{% endblock %}
+

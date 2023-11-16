@@ -1,0 +1,91 @@
+{% extends 'index.html' %}
+
+{% block contenu %}
+<div class="row row-cols-4">
+    <!-- Blocs d'information pour les pharmaciens -->
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats mx-auto">
+            <div class="card-header">
+                <div class="icon icon-warning">
+                    <span class="material-icons">equalizer</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <p class="category"><strong>Enregistrer</strong></p>
+                <h3 class="card-title">{{ count_pharmacien }}</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons text-info">info</i>
+                    <a href="#pablo">Pharmaciens</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blocs d'information pour les mutuelles -->
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats mx-auto">
+            <div class="card-header">
+                <div class="icon icon-warning">
+                    <span class="material-icons">equalizer</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <p class="category"><strong>Enregistrer</strong></p>
+                <h3 class="card-title">0</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons text-info">info</i>
+                    <a href="#pablo">Mutuelles</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blocs d'information pour les assureurs -->
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats mx-auto">
+            <div class="card-header">
+                <div class="icon icon-warning">
+                    <span class="material-icons">equalizer</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <p class="category"><strong>Enregistrer</strong></p>
+                <h3 class="card-title">0</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons text-info">info</i>
+                    <a href="#pablo">Assureurs</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blocs d'information pour les médecins -->
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats mx-auto">
+            <div class="card-header">
+                <div class="icon icon-warning">
+                    <span class="material-icons">equalizer</span>
+                </div>
+            </div>
+            <div class="card-content">
+                <p class="category"><strong>Enregistrer</strong></p>
+                <h3 class="card-title">0</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons text-info">info</i>
+                    <a href="#pablo">Médecins</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

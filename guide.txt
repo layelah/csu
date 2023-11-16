@@ -1,0 +1,4 @@
+.Gestion des utilisateurs
+.Se souvenir de moi (connexion)
+.prise en charge dans cree et modifier hopital
+.importation et exportation

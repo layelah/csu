@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | Registre CSU</title>
+    <link rel="stylesheet" href="{% static 'css/connexion/style.css' %}">
+</head>
+
+<body>
+    <header class="header">
+        <img src="{% static 'img/logo.ico' %}" alt="Logo">
+    </header>
+    <div class="wrapper">
+        <div class="form-box login">
+            <h2>Identifiez vous !</h2>
+            <form method="POST" action="">
+            {%csrf_token%}
+                    {% for message in messages %}
+                        <div id="error-message" class="alert" style="color: red; background-color: #fff;">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                <div class="input-box">
+                    <span class="icon">
+                        <ion-icon name="person"></ion-icon>
+                    </span>
+                    <input required type="text" placeholder="Identifiant" name="username">
+                </div>
+
+
+                <div class="input-box">
+                    <span class="icon password-toggle" id="password-toggle">
+                        <ion-icon name="eye-off-outline"></ion-icon>
+                    </span>
+                    <input required type="password" placeholder="Mot de passe" name="password" id="password">
+                </div>
+
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Se souvenir de moi</label>
+                    <a href="#">Mot de passe oublié ?</a>
+                </div>
+
+                <button type="submit" class="btn">Se connecter</button>
+
+            </form>
+        </div>
+    </div>
+    <script src="{% static 'js/connexion/script.js' %}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

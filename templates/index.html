@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <!-- Balises meta requises -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Styles Bootstrap -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Styles personnalisés -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Styles DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="icon" type="image/png" href="{% static 'img/logo_rond.png' %}">
+    <title>Couverture Sanitaire Universelle</title>
+</head>
+<body>
+<div class="wrapper">
+    <!-- Superposition pour le contenu de la page -->
+    <div class="body-overlay"></div>
+    {% include 'base/navbar.html' %}
+    <!-- Contenu de la page -->
+    <div id="content">
+        <div class="top-navbar">
+            <nav class="navbar navbar-expand-lg" style="background-color: #418558;">
+                <div class="container-fluid">
+                    <!-- Bouton pour réduire le menu latéral -->
+                    <button type="button" id="sidebarCollapse" class="d-xl-block d-lg-block d-md-mone d-none">
+                        <span class="material-icons" >menu</span>
+                    </button>
+                    <!-- Marque du site -->
+                    <a class="navbar-brand" href="#"></a>
+                    <!-- Bouton "Plus" pour les petits écrans -->
+                    <button class="d-inline-block d-lg-none ml-auto more-button" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="material-icons">more_vert</span>
+                    </button>
+                    <!-- Menu de navigation pour les petits écrans -->
+                    <div class="collapse navbar-collapse d-lg-block d-xl-block d-sm-none d-md-none d-none"
+                         id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <!-- Éléments de navigation -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span class="material-icons">apps</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span class="material-icons">person</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <span class="material-icons">settings</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'connexion' %}" title="Se Connecter">
+                                    <span class="material-icons">exit_to_app</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="main-content">
+            <!-- Contenu spécifique de chaque page -->
+            {% block contenu %}
+            {% endblock %}
+            <!-- Pied de page -->
+            {% include 'base/footer.html' %}
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+<option value="">---------</option>
+{% for commune in communes %}
+<option value="{{ commune.pk }}">{{ commune.libelle }}</option>
+{% endfor %}

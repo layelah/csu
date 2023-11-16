@@ -1,0 +1,4 @@
+<option value="">---------</option>
+{% for departement in departements %}
+<option value="{{ departement.pk }}">{{ departement.libelle }}</option>
+{% endfor %}

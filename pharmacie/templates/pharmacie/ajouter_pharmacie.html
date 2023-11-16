@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block body %}
+<br><br>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="card bg-light mb-3">
+      <div class="card-header">
+        <i class="fa-solid fa-pen-to-square fa-lg"></i> Mettre à jour les informations de la pharmacie
+      </div>
+      <div class="card-body">
+        <form method="post" id="PharmacieForm" data-departements-url="{% url 'ajax_chargement_departement' %}" data-communes-url="{% url 'ajax_chargement_commune' %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <button type="submit" name="save_and_add_another" class="btn btn-secondary">Enregistrer et ajouter à nouveau</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $("#id_region").change(function () {
+        const url = $("#PharmacieForm").attr("data-departements-url");
+        const regionId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'region_id': regionId
+            },
+            success: function (data) {
+                $("#id_departement").html(data);
+            }
+        });
+
+    });
+
+$("#id_departement").change(function () {
+    const url = $("#PharmacieForm").attr("data-communes-url");
+    const departementId = $(this).val();
+
+    $.ajax({
+        url: url,
+        data: {
+            'departement_id': departementId
+        },
+        success: function (data) {
+            $("#id_commune").html(data);
+        }
+    });
+});
+
+</script>
+
+{% endblock %}

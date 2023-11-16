@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block body %}
+<br><br>
+<div class="row justify-content-center">
+  <div class="col-6">
+    <div class="card bg-light mb-3">
+      <div class="card-header">
+        <i class="fa-solid fa-pen-to-square fa-lg"></i> Mettre à jour les informations de l'assureur
+      </div>
+      <div class="card-body">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-primary">Enregistrer</button>
+          <button type="submit" name="save_and_add_another" class="btn btn-secondary">Enregistrer et ajouter à nouveau</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,184 @@
+{% extends 'index.html' %}
+
+{% block contenu %}
+{% load static %}
+<div class="row justify-content-center">
+    <div class="col-12">
+        <!-- Afficher les alertes -->
+        {% for message in messages %}
+            {% if 'ajout_medecin' in message.tags %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+        </div>
+    {% elif 'suppression_medecin' in message.tags %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% elif 'modification_medecin' in message.tags %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endif %}
+    {% endfor %}
+        <div class="card-body" style="margin-bottom: -10px;">
+            <div class="d-flex justify-content">
+                    <!-- Bouton pour créer un nouveau medecin -->
+                    <button type="button" class="btn btn-success" title="Ajouter un medecin"
+                            onclick="location.href='{% url 'ajouter_medecin' %}'">
+                        <i class="fas fa-plus-circle" aria-hidden="true"></i> Ajouter Medecin
+                    </button>
+                </div>
+        </div>
+        <div class="col-lg-12 col-md-12" style="margin-top: -28px;">
+            <div class="card" style="min-height: 485px; padding-top: 0px;">
+                <div class="card-header" >
+                    <i class="fa-solid fa-stethoscope fa-2xl"></i>
+                </div>
+                <div class="card-content table-responsive">
+                    <table id="dataTableExample4" class="table table-bordered table-hover table-striped" style="font-size: 14px;">
+                            <thead class="text-primary" >
+                            <tr>
+                                <th class="sorting" style="color: black;">CODE</th>
+                                <th class="sorting" style="color: black;">PRENOM</th>
+                                <th class="sorting" style="color: black;">NOM</th>
+                                <th class="sorting" style="color: black;">SPECIALITE</th>
+                                <th class="sorting" style="color: black;">TELEPHONE</th>
+                                <th class="sorting" style="color: black;">EMAIL</th>
+                                <th class="sorting" style="color: black;">ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for medecin in liste_medecin %}
+                            <tr>
+                                <td>{{ medecin.code }}</td>
+                                <td>{{ medecin.prenom }}</td>
+                                <td>{{ medecin.nom }}</td>
+                                <td>{{ medecin.specialite }}</td>
+                                <td>{{ medecin.telephone }}</td>
+                                <td>{{ medecin.email }}</td>
+                                <td>
+                                    <!-- Bouton pour afficher les détails dans une modal -->
+                                    <button type="button" class="btn btn-success  btn-sm me-1" data-bs-toggle="modal"
+                                    data-bs-target="#myModal{{ medecin.id }}" title="Détails">
+                                    <i class="fa-solid fa-circle-info fa-lg"></i>
+                                    </button>
+
+                                    <!-- Modal de détails -->
+                                    <div class="modal" id="myModal{{ medecin.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">
+                                                        {{ medecin.prenom }} {{ medecin.nom }}
+                                                    </h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            {% if medecin.photo %}
+                                                                <img src="{{ medecin.photo.url }}" alt="Photo du medecin" class="img-fluid">
+                                                            {% else %}
+                                                                <img src="{% static 'img/default_image_medecin.jpg' %}" alt="Photo par défaut" class="img-fluid">
+                                                            {% endif %}
+                                                        </div>
+                                                        <div class="col-md-8">
+                                                            <h6><u>INFORMATIONS PERSONNELLES:</u></h6>
+                                                            <ul class="list-unstyled">
+                                                                <li><strong>CODE:</strong> {{ medecin.code }}</li>
+                                                                <li><strong>Spécialité:</strong> {{ medecin.specialite }}</li>
+                                                                <li><strong>Téléphone:</strong> {{ medecin.telephone }}</li>
+                                                                <li><strong>Email:</strong> {{ medecin.email }}</li>
+                                                                <li><u>HOPITAUX:</u></li>
+                                                                    <ul class="list-unstyled">
+                                                                        {% for hopital in medecin.hopitaux.all %}
+                                                                            <li>{{ hopital.libelle }}</li>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Autres sections d'informations -->
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Fermer</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Bouton pour la modification -->
+                                    <button type="button" class="btn btn-warning btn-sm me-1" onclick="window.location.href='{% url 'modification_medecin' medecin.id %}'"
+                                        title="Modifier">
+                                        <i class="fa-solid fa-pen-to-square fa-lg"></i>
+                                    </button>
+
+                                    <!-- Bouton pour la suppression -->
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                        data-bs-target="#delete{{ medecin.id }}" title="Supprimer">
+                                        <i class="fa-solid fa-trash-can fa-lg"></i>
+                                    </button>
+                                    <div class="modal" id="delete{{ medecin.id }}" tabindex="-1"
+                                         aria-labelledby="myModalLabel2" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true"></span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Voulez-vous vraiment supprimer le medecin {{ medecin.prenom }}
+                                                        {{ medecin.nom }} ?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form action="{% url 'supprimer_medecin' medecin.id %}"
+                                                          method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                                                    </form>
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Annuler</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                 </div>
+            </div>
+        </div>
+
+        <div class="card-body" style="margin-top: -20px;">
+            <div style="text-align:center;" id="mon_ancre_medecin">
+                <form method="get" id="filter-form">
+                    {% csrf_token %}
+                    {{my_filter.form}}
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% for medecin in liste_medecin %}
+<div class="modal" id="myModal{{ medecin.id }}" tabindex="-1" aria-labelledby="myModalLabel1" aria-hidden="true">
+</div>
+{% endfor %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const filterForm = document.getElementById("filter-form");
+        const filterInputs = document.querySelectorAll('input[type="text"], select');
+
+        filterInputs.forEach(function (input) {
+            input.addEventListener("input", function () {
+                filterForm.submit();
+            });
+        });
+    });
+</script>
+{% endblock %}
+

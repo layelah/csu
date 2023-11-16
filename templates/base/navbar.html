@@ -1,0 +1,58 @@
+{% load static %}
+
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <img src="{% static 'img/logo_rond.png' %}" class="img-fluid"/>
+        <h3><span>Couverture Sanitaire Universelle</span></h3>
+    </div>
+    <br>
+
+    <!--1 Menu Hopitaux -->
+    <table>
+        <tr>
+            <td><a href="{% url 'liste_hopital' %}#mon_ancre_hopital"><i class="material-icons">business</i><span>Hopitaux</span></a></td>
+            <td><a href="{% url 'ajouter_hopital' %}"><i class="material-icons">add</i><span></span></a></td>
+        </tr>
+    </table>
+
+    <!--2 Menu Pharmacies -->
+    <table>
+        <tr>
+            <td><a href="{% url 'liste_pharmacie' %}#mon_ancre_pharmacie"><i class="material-icons">local_hospital</i><span>Pharmacies</span></a></td>
+            <td><a href="{% url 'ajouter_pharmacie' %}"><i class="material-icons">add</i><span></span></a></td>
+        </tr>
+    </table>
+
+    <!--3 Menu Medecins -->
+    <table>
+        <tr>
+            <td><a href="{% url 'liste_medecin' %}#mon_ancre_medecin"><i class="material-icons">person</i><span>Medecins</span></a></td>
+            <td><a href="{% url 'ajouter_medecin' %}"><i class="material-icons">add</i><span></span></a></td>
+        </tr>
+    </table>
+
+    <!--4 Menu Médicaments -->
+    <table>
+        <tr>
+            <td><a href="{% url 'liste_medicament' %}#mon_ancre_medicament"><i class="material-icons">local_pharmacy</i><span>Médicaments</span></a></td>
+            <td><a href="{% url 'ajouter_medicament' %}"><i class="material-icons">add</i><span></span></a></td>
+        </tr>
+    </table>
+
+    <!--5 Menu Assureurs -->
+    <table>
+        <tr>
+            <td><a href="{% url 'liste_assureur' %}#mon_ancre_assureur"><i class="material-icons">local_atm</i><span>Assureurs</span></a></td>
+            <td><a href="{% url 'ajouter_assureur' %}"><i class="material-icons">add</i><span></span></a></td>
+        </tr>
+    </table>
+
+    <!--6 Menu Pharmaciens -->
+    <table>
+        <tr>
+            <td><a href="{% url 'liste_pharmacien' %}#mon_ancre_pharmacien"><i class="material-icons">person</i><span>Pharmaciens</span></a></td>
+            <td><a href="{% url 'ajouter_pharmacien' %}"><i class="material-icons">add</i><span></span></a></td>
+        </tr>
+    </table>
+
+</nav>

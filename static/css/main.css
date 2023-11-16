@@ -1,0 +1,684 @@
+@import url('https://fonts.googleapis.com/css?family=Nova+Slim&display=swap');
+
+/* Réinitialisation des styles de base */
+body,html {
+    /* Réinitialisation des styles de base */
+	line-height: 1.8;
+    font-family: "Open Sans", sans-serif;
+     color: #555e58;
+	 text-transform:capitalize;
+	text-rendering: optimizeLegibility !important;
+	-webkit-font-smoothing: antialiased !important;
+	 font-weight: 400;
+	 margin:0px;
+     padding:0px;
+     font-size: 14px;
+}
+
+/* Styles pour les titres */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
+    font-weight: 400;
+    line-height: 1.5em;
+}
+
+/* Styles pour les paragraphes */
+p {
+    font-size: 15px;
+    margin: 12px 0 0;
+    line-height: 24px;
+}
+
+/* Styles de base pour les liens */
+a{
+	color: #333;
+	font-weight: 400;
+}
+
+/* Réinitialisation des styles pour les listes */
+ul, ol {
+	padding: 0;
+	margin:0px;
+		list-style: none;
+}
+
+/* Styles pour les boutons */
+button{
+	cursor:pointer;
+}
+
+button:focus{
+	box-shadow:none;
+	outline:none;
+	border:none;
+}
+
+/* Styles pour les liens */
+a,
+a:hover,
+a:focus {
+    color: #333;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+/* Police d'icônes Material Icons */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://example.com/MaterialIcons-Regular.eot); /* pour IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'),
+    url(https://example.com/MaterialIcons-Regular.woff) format('woff'),
+    url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+/* Styles pour les icônes Material Icons */
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased; /* Support pour tous les WebKit browsers. */
+    text-rendering: optimizeLegibility; /* Support pour Safari et Chrome. */
+    -moz-osx-font-smoothing: grayscale; /* Support pour Firefox. */
+    font-feature-settings: 'liga'; /* Support pour IE. */
+}
+
+/* Style pour les lignes paires (fond blanc) */
+.table-striped tbody tr:nth-of-type(2n) {
+    background-color: #fff;
+}
+
+/* Style pour les lignes impaires (fond gris) */
+.table-striped tbody tr:nth-of-type(2n+1) {
+    background-color: #f2f2f2;
+}
+
+/* Styles pour le wrapper de la page */
+.wrapper {
+	position: relative;
+    width:100%;
+	overflow:auto;
+}
+
+/* Styles pour la barre latérale (sidebar) */
+#sidebar {
+    position:fixed;
+	height:100vh!important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index:11;
+    width: 270px;
+	overflow:auto;
+	transition:all 0.3s ;
+    background:  #418558;
+    box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%), 0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+}
+
+#sidebar::-webkit-scrollbar{
+	width:5px;
+	border-radius:10px;
+	background-color:#eee;
+	display:none;
+}
+
+#sidebar::-webkit-scrollbar-thumbs{
+	width:5px;
+	border-radius:10px;
+	background-color:#333;
+	display:none;
+}
+
+/* Afficher la barre de défilement au survol de la barre latérale */
+#sidebar:hover::-webkit-scrollbar{
+	display:block;
+}
+
+#sidebar:hover::-webkit-scrollbar-thumbs{
+	display:block;
+}
+
+/* Styles pour l'en-tête de la barre latérale */
+#sidebar .sidebar-header {
+    background-color: #418558;
+    color: #FFFFFF;
+    text-align: center;
+    padding:10px 20px;
+	border-bottom:none;
+}
+
+.sidebar-header h3{
+	color:#333;
+	font-size:17px;
+	margin:0px;
+	text-transform:uppercase;
+	transition:all 0.5s ease;
+	font-weight:600;
+}
+
+.sidebar-header img{
+	width:60px;
+	margin-right:10px;
+}
+
+.dropdown-toggle::after {
+    position: absolute;
+    right: 10px;
+    top: 23px;
+}
+
+#content {
+	position: relative;
+    transition: all 0.3s;
+	background-color: #EEEEEE;
+}
+
+.top-navbar{
+	width:100%;
+	z-index:9;
+	position:relative;
+}
+
+.main-content{
+	padding:10px 20px 0px 20px;
+	position: relative;
+    width: 100%;
+}
+
+.navbar{
+    background-color: #2196F3;
+    color: #FFFFFF;
+}
+
+.navbar-brand {
+    color: #FFFFFF;
+}
+
+.navbar button{
+	border:none;
+}
+
+.navbar button span{
+	color:#eee;
+}
+
+#sidebarCollapse{
+	border-radius:50%;
+	width:45px;
+	height:45px;
+	text-align:center;
+	line-height:45px;
+	margin-right:20px;
+	border:none;
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#sidebarCollapse span {
+    margin: 9px;
+    padding: 0px;
+}
+
+.navbar-nav > li.active{
+   color: #FFFFFF;
+   border-radius:4px;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.navbar-nav > li > a {
+    color: #FFFFFF;
+}
+
+.navbar .notification {
+	 position: absolute;
+    top: 5px;
+    right: 10px;
+	display: block;
+    font-size: 9px;
+    border: 0px;
+    font-size: 10px;
+    background: #d9534f;
+    min-width: 15px;
+	 text-align: center;
+    padding: 1px 5px;
+    height: 15px;
+    border-radius: 2px;
+    line-height: 14px;
+}
+
+ .navbar-nav > li.show .dropdown-menu {
+    transform: translate3d(0, 0, 0);
+	opacity:1;
+	visibility:visible;
+}
+
+.dropdown-menu li > a {
+    font-size: 13px;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 2px;
+	font-weight: 400;
+    transition: all 150ms linear;
+}
+
+.navbar-nav > .active > a:focus {
+    color: #FFFFFF;
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.navbar-nav li a {
+    position: relative;
+    display: block;
+    padding: 10px 15px!important;
+}
+
+.card {
+    margin: 10px 0;
+}
+
+.card {
+    border-radius: 0px!important;
+}
+
+.card {
+    display: inline-block;
+    position: relative;
+	border:none!important;
+    width: 100%;
+    margin:15px 0;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 8%);
+    border-radius: 6px;
+    color: rgba(0,0,0, 0.87);
+    background: #fff;
+}
+
+.card-stats .card-header {
+    float: left;
+    text-align: center;
+}
+
+.card .card-header {
+    padding: 15px 20px 0;
+    z-index: 3;
+	background-color:#fff!important;
+	border-bottom:none;
+}
+
+.card .card-footer .stats .material-icons {
+    position: relative;
+    top: 4px;
+    font-size: 16px;
+}
+
+.card-stats .card-header span {
+    font-size: 36px;
+    line-height: 56px;
+    width: 56px;
+    height: 56px;
+}
+
+.icon.icon-warning {
+    color: #ff9800;
+}
+
+.icon.icon-rose {
+    color: #e91e63;
+}
+
+.icon.icon-success {
+    color: #4caf50;
+}
+
+.icon.icon-info {
+    color: #00bcd4;
+}
+
+.card .card-footer {
+    margin: 0 7px 0px;
+    padding-top: 10px;
+	background-color:#fff;
+    border-top: 1px solid #eeeeee;
+}
+
+.text-info {
+    color: #03A9F4!important;
+}
+
+.card-stats .card-content {
+    text-align: right;
+    padding-top: 10px;
+}
+
+.card .card-content {
+    padding: 15px 20px;
+    position: relative;
+}
+
+.card .card-content .category {
+    margin-bottom: 0;
+}
+
+.card .category:not([class*="text-"]) {
+    color: #555555;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.card .card-title:not(.card-calendar .card-title) {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.card-stats .card-title {
+    margin: 0;
+}
+
+.card .card-footer .stats {
+    line-height: 22px;
+    color: #555555;
+    font-size: 15px;
+}
+
+.card .card-footer div {
+    display: inline-block;
+}
+
+.card .card-header-text h4{
+    margin-top: 0;
+    margin-bottom: 3px;
+	font-size:19px;
+    font-weight: 400;
+	color: #222222;
+    text-decoration: none;
+}
+
+.table > thead > tr > th {
+    border-bottom-width: 1px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.card .card-content {
+    padding: 15px 20px;
+    position: relative;
+}
+
+.streamline .sl-primary {
+    border-left-color: #188ae2;
+}
+
+.streamline .sl-item {
+    position: relative;
+    padding-bottom: 12px;
+    border-left: 1px solid #ccc;
+}
+
+.streamline .sl-item:before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 0;
+    background-color: #ccc;
+    width: 12px;
+    height: 12px;
+    border-radius: 100%;
+}
+
+.streamline .sl-primary:before, .streamline .sl-primary:last-child:after {
+    background-color: #188ae2;
+}
+
+.streamline .sl-danger:before, .streamline .sl-danger:last-child:after {
+    background-color: #ff5b5b;
+}
+
+.streamline .sl-success {
+    border-left-color: #10c469;
+}
+
+.streamline .sl-success:before, .streamline .sl-success:last-child:after {
+    background-color: #10c469;
+}
+
+.streamline .sl-warning {
+    border-left-color: #f9c851;
+}
+
+.streamline .sl-warning:before, .streamline .sl-warning:last-child:after {
+    background-color: #f9c851;
+}
+
+.streamline .sl-danger {
+    border-left-color: #ff5b5b;
+}
+
+.streamline .sl-item .sl-content {
+    margin-left: 24px;
+}
+
+.streamline .sl-item .text-muted {
+    color: inherit;
+    opacity: .6;
+	font-size:12px;
+}
+
+.streamline .sl-item p {
+	font-size:14px;
+	color:#333;
+}
+
+.footer {
+    border-top: 1px solid #e7e7e7;
+}
+
+footer {
+    padding: 10px 0;
+	position:relative;
+	width:100%;
+}
+
+footer ul li {
+    display: inline-block;
+}
+
+footer ul li a {
+    color: inherit;
+    padding: 15px;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    text-decoration: none;
+    position: relative;
+    display: block;
+}
+
+footer .copyright {
+    padding: 15px;
+	font-size:14px;
+    margin: 0;
+}
+
+#sidebar.show-nav,.body-overlay.show-nav{
+	transform:translatex(0%);
+	opacity:1;
+	display:block;
+	visibility:visible;
+	z-index:15;
+}
+
+@media only screen and (min-width:992px){
+	#sidebar.active {
+    width: 0;
+	height:100%!important;
+	position:absolute!important;
+	overflow:visible!important;
+	top:0!important;
+	z-index:666;
+	float:left!important;
+    bottom: 0!important;
+}
+
+#sidebar.active .sidebar-header h3 span {
+   display:none;
+   transition:all 0.5s ease;
+}
+
+#sidebar.active ul li a span{
+    display:none;
+	transition:all 0.5s ease;
+}
+
+#sidebar.active .dropdown-toggle::after {
+    display:none;
+	transition:all 0.5s ease;
+}
+
+#content {
+    width: calc(100% - 270px);
+    position: relative;
+    float: right;
+    transition: all 0.3s;
+    background-color: #EEEEEE;
+}
+
+#content.active {
+    margin-left: 0;
+    width: 100%;
+}
+
+#sidebar.active .menu {
+    transform: translateX(-100%); /* déplace le menu latéral hors de la vue */
+    position: absolute;
+    left: 81px;
+    background-color: white;
+    width: 0;
+    height: auto;
+    margin: 5px 0;
+    top: 0;
+    border: 1px solid #dcd9d9;
+    z-index: 4;
+}}
+
+@media only screen and (min-width:992px){
+.dropdown-menu {
+    border: 0;
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 26%);
+	transform: translate3d(0, -20px, 0);
+    visibility: hidden;
+	transition: all 150ms linear;
+    display: block;
+	min-width:15rem;
+	right: 0;
+    left: auto;
+    opacity: 0;
+}}
+
+@media only screen and (max-width:992px){
+#sidebar {
+    position:fixed;
+    top: 0;
+    bottom:0;
+    z-index: 10;
+    width: 270px;
+	transform:translatex(-100%);
+	transition: all 150ms linear;
+	box-shadow:none!important;
+}
+
+.body-overlay{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	display:none;
+	visibility:hidden;
+	opacity:0;
+	z-index:3;
+	transition: all 150ms linear;
+	background-color:rgba(0,0,0,0.5);
+}}
+
+#sidebar.active * {
+    display: none;
+}
+
+/* Pour la mise en page du tableau de la barre latérale */
+#sidebar table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#sidebar table td {
+    padding: 15px;
+    border: none;
+}
+
+#sidebar table td:hover {
+    background-color: rgba(200, 200, 200, 0.2);
+}
+
+/* Mise à jour des icônes lorsqu'ils sont survolés */
+#sidebar table td:hover i {
+    color: #FFFFFF;
+}
+
+#sidebar table td:first-child {
+    width: 70%;
+}
+
+#sidebar table td a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #333;
+    font-weight: 400;
+    transition: all 0.3s;
+}
+
+#sidebar table td a:hover {
+    text-decoration: none;
+}
+
+/* Pour les icônes dans les colonnes du tableau */
+#sidebar table td i {
+    position: relative;
+    margin-right: 10px;
+    top: 5px;
+    color: #FFFFFF;
+    margin-left: 10px;
+    font-size: 18px;
+}
+
+/* Mise à jour du logo de l'en-tête */
+#sidebar .sidebar-header img {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+/* Mise à jour des liens de la barre latérale */
+#sidebar a {
+    color: #418558;
+}
+
+#sidebar a span{
+    color: #FFFFFF;
+}
+
+/* Mise à jour de la couleur du texte pour l'en-tête de la barre latérale */
+#sidebar .sidebar-header h3 span {
+    color: #FFFFFF;  /* Couleur du texte mise à jour en blanc */
+}
